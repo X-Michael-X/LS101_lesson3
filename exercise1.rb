@@ -1,9 +1,9 @@
 # Question 1
 # What would you expect the code below to print out?
 
-# numbers = [1, 2, 2, 3]
-# numbers.uniq
-# puts numbers
+numbers = [1, 2, 2, 3]
+numbers.uniq
+puts numbers
 
 # Answer 1
 # Because puts outputs a string , and because calling .uniq returns a new array 
@@ -53,8 +53,8 @@ advice.gsub('important' , 'urgent')
 numbers = [1, 2, 3, 4, 5]
 #What do the following method calls do (assume we reset numbers to the original array between method calls)?
 
-numbers.delete_at(1) ( removes the element located at given index point )
-numbers.delete(1) ( removes given element from the caller )
+numbers.delete_at(1)  # ( removes the element located at given index point )
+numbers.delete(1) # ( removes given element from the caller )
 
 # Question 5
 
