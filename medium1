@@ -37,7 +37,7 @@ end
 # It errors because your are trying to concatenate a string and an integer
 
 puts "the value of 40 + 2 is " + (40 + 2).to_s
-puts "the value of 40 + 2 is #{40 + 2}
+puts "the value of 40 + 2 is #{40 + 2}"
 
 #Question 4
 
@@ -48,7 +48,19 @@ numbers.each do |number|
   p number
   numbers.shift(1)
 end
-What would be output by this code?
+
+# The output would be :
+# 1
+# 3
+# [3, 4]
+
+# The reason for this is while the array is being mutated mid action , the loop count is not. In this example , the first time
+# through the array we find 1 at numbers[0] , then we numbers.shift and drop 1 from the array , making our new array [2, 3, 4].
+# On our second time through we find 3 at numbers[1] , and output it. Then we drop 2 from the array by means of numbers.shift.
+# numbers.each does not iterate again because numbers[2] is non-existent. The loop then returns the final numbers array , which was 
+# [3, 4].
+
+#What would be output by this code?
 
 numbers = [1, 2, 3, 4]
 numbers.each do |number|
