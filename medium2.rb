@@ -163,7 +163,7 @@ puts rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock")
 
 # Question 8
 
-Consider these two simple methods:
+# Consider these two simple methods:
 
 def foo(param = "no")
   "yes"
@@ -172,7 +172,9 @@ end
 def bar(param = "no")
   param == "no" ? "yes" : "no"
 end
-What would be the output of this code:
+
+# What would be the output of this code:
 
 bar(foo)
-Solution 8
+
+# the output would be "no" , because foo will return a value of "yes" ; and bar("yes") evaluates to "no"
