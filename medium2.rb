@@ -56,26 +56,43 @@ tricky_method(my_string, my_array)
 
 puts "My string looks like this now: #{my_string}"
 puts "My array looks like this now: #{my_array}"
-We learned that whether the above "coincidentally" does what we think we wanted "depends" upon what is going on inside the method.
 
-How can we refactor this exercise to make the result easier to predict and easier for the next programmer to maintain?
+# We learned that whether the above "coincidentally" does what we think we wanted "depends" upon what is going on inside the method.
 
-Solution 3
-Question 4
+# How can we refactor this exercise to make the result easier to predict and easier for the next programmer to maintain?
+# Assuming the intention of the code is to append "rutabaga" to my_string or my_array then :
 
-A quick glance at the docs for the Ruby String class will have you scratching your head over the absence of any "word iterator" methods.
+def tricky_method(str_arg, arr_arg)
+  str_arg += " rutabaga"
+  arr_arg += ["rutabaga"]
+  return str_arg, arr_arg
+end
 
-Our natural inclination is to think of the words in a sentence as a collection. We would like to be able to operate on those words the same way we operate on the elements of an array. Where are the String#each_word and the String#map_words methods?
+my_string = "pumpkins"
+my_array = ["pumpkins"]
+my_string, my_array = tricky_method(my_string, my_array)
 
-A common idiom used to solve this conundrum is to use the String#split in conjunction with Array#join methods to break our string up and then put it back together again.
+puts "My string looks like this now: #{my_string}"
+puts "My array looks like this now: #{my_array}"
 
-Use this technique to break up the following string and put it back together with the words in reverse order:
+# Question 4
+
+# A quick glance at the docs for the Ruby String class will have you scratching your head over the absence 
+# of any "word iterator" methods. Our natural inclination is to think of the words in a sentence as a collection.
+# We would like to be able to operate on those words the same way we operate on the elements of an array. Where
+# are the String#each_word and the String#map_words methods?
+
+# A common idiom used to solve this conundrum is to use the String#split in conjunction with Array#join methods 
+# to break our string up and then put it back together again.
+
+# Use this technique to break up the following string and put it back together with the words in reverse order:
 
 sentence = "Humpty Dumpty sat on a wall."
-Solution 4
-Question 5
+sentence.split(/\W/).reverse.join(' ')
 
-What is the output of the following code?
+# Question 5
+
+# What is the output of the following code?
 
 answer = 42
 
@@ -86,10 +103,12 @@ end
 new_answer = mess_with_it(answer)
 
 p answer - 8
-Solution 5
-Question 6
 
-One day Spot was playing with the Munster family's home computer and he wrote a small program to mess with their demographic data:
+# since answer remains the same throughout , 42 - 8 == 34.
+
+# Question 6
+
+# One day Spot was playing with the Munster family's home computer and he wrote a small program to mess with their demographic data:
 
 munsters = {
   "Herman" => { "age" => 32, "gender" => "male" },
@@ -105,15 +124,26 @@ def mess_with_demographics(demo_hash)
     family_member["gender"] = "other"
   end
 end
-After writing this method, he typed the following...and before Grandpa could stop him, he hit the Enter key with his tail:
+
+# After writing this method, he typed the following...and before Grandpa could stop him, he hit the Enter key with his tail:
 
 mess_with_demographics(munsters)
-Did the family's data get ransacked? Why or why not?
 
-Solution 6
-Question 7
+# Did the family's data get ransacked? Why or why not?
+# Yes the family's data was altered because Spot called the munsters hash directly as an argument , instead of using another object id
+# and then reassigning it within the method. To avoid data alteration he could have used something like :
 
-Method calls can take expressions as arguments. Suppose we define a function called rps as follows, which follows the classic rules of rock-paper-scissors game, but with a slight twist that it declares whatever hand was used in the tie as the result of that tie.
+def mess_with_demographics(hash)
+  demo_hash = hash
+  demo_hash.values.each do |family_member|
+    family_member["age"] += 42
+    family_member["gender"] = "other"
+  end
+end
+
+# Question 7
+
+# Method calls can take expressions as arguments. Suppose we define a function called rps as follows, which follows the classic rules of rock-paper-scissors game, but with a slight twist that it declares whatever hand was used in the tie as the result of that tie.
 
 def rps(fist1, fist2)
   if fist1 == "rock"
@@ -124,11 +154,14 @@ def rps(fist1, fist2)
     (fist2 == "rock") ? "rock" : "scissors"
   end
 end
-What is the result of the following call?
+
+# What is the result of the following call?
 
 puts rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock")
-Solution 7
-Question 8
+
+# "paper"
+
+# Question 8
 
 Consider these two simple methods:
 
