@@ -32,7 +32,8 @@ puts numbers
 
 # put ! after something, like words.uniq! ( if you call a method with ! it will mutate the caller, otherwise error )
 
-# put ? before something 
+# put ? before something ( ? : denotes a ternary operation , while ? before a character or digit returns that 
+# character or digit as a string ) 
 
 # put ? after something ( if you call a method with ? it will apply a boolean logic to the caller based upon what object
 # it was given and the logical parameters )
