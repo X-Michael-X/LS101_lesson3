@@ -1,12 +1,12 @@
-Question 1
+# Question 1
 
-Every named entity in Ruby has an object_id. This is a unique identifier for that object.
+# Every named entity in Ruby has an object_id. This is a unique identifier for that object.
 
-It is often the case that two different things "look the same", but they can be different objects. The "under the hood" object referred to by a particular named-variable can change depending on what is done to that named-variable.
+# It is often the case that two different things "look the same", but they can be different objects. The "under the hood" object referred to by a particular named-variable can change depending on what is done to that named-variable.
 
-In other words, in Ruby everything is an object...but it is not always THE SAME object.
+# In other words, in Ruby everything is an object...but it is not always THE SAME object.
 
-Predict how the values and object ids will change throughout the flow of the code below:
+# Predict how the values and object ids will change throughout the flow of the code below:
 
 def fun_with_ids
   a_outer = 42
@@ -72,7 +72,21 @@ def fun_with_ids
   puts "c_inner is #{c_inner} with an id of: #{c_inner_id} INSIDE and: #{c_inner.object_id} AFTER the block." rescue puts "ugh ohhhhh"
   puts "d_inner is #{d_inner} with an id of: #{d_inner_id} INSIDE and: #{d_inner.object_id} AFTER the block.\n\n" rescue puts "ugh ohhhhh"
 end
-Solution 1
+
+# For line 22 ; a_outer = 42 and a_outer_id = 85
+# For line 23 ; b_outer = "forty two" and b_outer_id = 25276512 However it should be noted that each string creates a new object
+# therefore if I assigned b_outer twice the object id would be differet each time
+# For line 24 ; c_outer = [42] and c_outer_id = 25144884 However just as above a reassignment of c_outer = [42] will 
+# change c_outer.object_id
+# For line 25 ; d_outer = c_outer[0] ( which is the integer 42 ) therefore d_outer_id is again 85
+
+# For line 33 ; a_outer_id = 85 and a_outer_inner_id = 85 and lines 34 35 and 36 follow the same logic. a_outer_id and
+# a_outer_inner_id are both pointing to the same object hence the id is the same.
+
+# 
+
+
+
 Question 2
 
 Let's look at object id's again from the perspective of a method call instead of a block.
