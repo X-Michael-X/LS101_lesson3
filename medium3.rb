@@ -77,13 +77,26 @@ end
 # For line 23 ; b_outer = "forty two" and b_outer_id = 25276512 However it should be noted that each string creates a new object
 # therefore if I assigned b_outer twice the object id would be differet each time
 # For line 24 ; c_outer = [42] and c_outer_id = 25144884 However just as above a reassignment of c_outer = [42] will 
-# change c_outer.object_id
+# change c_outer's object_id
 # For line 25 ; d_outer = c_outer[0] ( which is the integer 42 ) therefore d_outer_id is again 85
 
 # For line 33 ; a_outer_id = 85 and a_outer_inner_id = 85 and lines 34 35 and 36 follow the same logic. a_outer_id and
 # a_outer_inner_id are both pointing to the same object hence the id is the same.
 
-# 
+# For lines 43 thru 46 using a-outer as an example the following would happen : first a_outer is reassigned ( in this case to 22 )
+# however a _outer_id has not been changed and still points to the object_id for 42 , therefore a_outer_id would be 85 and 
+# a_outer.object_id would be 45 ( because it is asking for the object_id  for the now reassigned a_outer.
+
+# For lines 59 thru 62 using line 59 as an example a_inner = a_outer ( which is 22 ) and a_inner_id = a_inner.object_id ( which is 45 )
+# so the string interpolations would be 22 / 45 / 45.However it should be noted that for b_inner and c_inner we are referring to 
+# the ORIGINAL string and array as defined on lines 39 and 40.
+
+# For lines 65 thru 68 even though we are outside the block our first variables ( i.e. a_outer ) have been reassigned. Therefore line 65
+# would have these string interpolations 22/ 85 ( pre block object_id from when a_outer = 42 ) / 45 ( post block object_id ) and lines
+# 66 67 and 68 would follow the same logic/
+
+# For lines 70 thru 73 all lines are rescued because now that we are outside the block we have no access to a_inner ( therefore a_inner 
+# is meaningless.
 
 
 
