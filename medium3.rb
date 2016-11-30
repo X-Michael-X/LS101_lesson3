@@ -75,7 +75,7 @@ end
 
 # For line 22 ; a_outer = 42 and a_outer_id = 85
 # For line 23 ; b_outer = "forty two" and b_outer_id = 25276512 However it should be noted that each string creates a new object
-# therefore if I assigned b_outer twice the object id would be differet each time
+# therefore if I assigned b_outer twice the object id would be different each time
 # For line 24 ; c_outer = [42] and c_outer_id = 25144884 However just as above a reassignment of c_outer = [42] will 
 # change c_outer's object_id
 # For line 25 ; d_outer = c_outer[0] ( which is the integer 42 ) therefore d_outer_id is again 85
