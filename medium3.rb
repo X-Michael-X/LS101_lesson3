@@ -93,20 +93,21 @@ end
 
 # For lines 65 thru 68 even though we are outside the block our first variables ( i.e. a_outer ) have been reassigned. Therefore line 65
 # would have these string interpolations 22/ 85 ( pre block object_id from when a_outer = 42 ) / 45 ( post block object_id ) and lines
-# 66 67 and 68 would follow the same logic/
+# 66 67 and 68 would follow the same logic.
 
 # For lines 70 thru 73 all lines are rescued because now that we are outside the block we have no access to a_inner ( therefore a_inner 
 # is meaningless.
 
 
 
-Question 2
+# Question 2
 
-Let's look at object id's again from the perspective of a method call instead of a block.
+# Let's look at object id's again from the perspective of a method call instead of a block.
 
-Here we haven't changed ANY of the code outside or inside of the block/method. We simply took the contents of the block from the previous exercise and moved it to a method, to which we are passing all of our outer variables.
+# Here we haven't changed ANY of the code outside or inside of the block/method. We simply took the contents 
+# of the block from the previous exercise and moved it to a method, to which we are passing all of our outer variables.
 
-Predict how the values and object ids will change throughout the flow of the code below:
+# Predict how the values and object ids will change throughout the flow of the code below:
 
 def fun_with_ids
   a_outer = 42
@@ -176,7 +177,25 @@ def an_illustrative_method(a_outer, b_outer, c_outer, d_outer, a_outer_id, b_out
   puts "c_inner is #{c_inner} with an id of: #{c_inner_id} inside the method (compared to #{c_outer.object_id} for outer)."
   puts "d_inner is #{d_inner} with an id of: #{d_inner_id} inside the method (compared to #{d_outer.object_id} for outer).\n\n"
 end
-Solution 2
+
+# For lines 123 thru 126 the logic is the same as lines 22 thru 25 in question 1.
+
+# For lines 149 thru 152 ( we are now inside :an_illustrative_method ) ; the logic is the same as lines 33 thru 36 above. However
+# it should be noted that while the names of the variables are the same and they are pointing to the same objects ; the variables 
+# themselves are new variables because they are within :an_illustrative_method.
+
+# For lines 159 thru 162 we find the same logic used as in lines 43 thru 46 in Question 1.
+
+# For lines 175 to 178 our logic is the same as lines 59 thru 62 in Question 1.
+
+# For lines 131 thru 134 ( we are now outside of :an_illustrative_method and back inside :fun_with_ids ) we find the opposite happening 
+# when we compare this code to lines 65 thru 68 in Question 1. In Question 1 lines 65 - 68 we find that the variables which were 
+# reassigned in the block remain reassigned once we leave the block , but in Question 2 131 - 134 once we leave the method our 
+# variables remain as they were defined on lines 113 thru 116. When :an_illustrative_method accepts a_outer as an argument , it is
+# accepting the VALUE when have assigned to a_outer , not the VARIABLE a_outer.
+
+# For lines 136 thru 139 we once againhave no access to a_inner etc. Therefore all lines require rescue. 
+
 Question 3
 
 Let's call a method, and pass both a string and an array as parameters and see how even though they are treated in the same way by Ruby, the results can be different.
