@@ -196,11 +196,13 @@ end
 
 # For lines 136 thru 139 we once againhave no access to a_inner etc. Therefore all lines require rescue. 
 
-Question 3
 
-Let's call a method, and pass both a string and an array as parameters and see how even though they are treated in the same way by Ruby, the results can be different.
+# Question 3
 
-Study the following code and state what will be displayed...and why:
+# Let's call a method, and pass both a string and an array as parameters and see how even though they are treated in the 
+# same way by Ruby, the results can be different.
+
+# Study the following code and state what will be displayed...and why:
 
 def tricky_method(a_string_param, an_array_param)
   a_string_param += "rutabaga"
@@ -213,7 +215,8 @@ tricky_method(my_string, my_array)
 
 puts "My string looks like this now: #{my_string}"
 puts "My array looks like this now: #{my_array}"
-Solution 3
+
+
 Question 4
 
 To drive that last one home...let's turn the tables and have the string show a modified output, while the array thwarts the method's efforts to modify the caller's version of it.
