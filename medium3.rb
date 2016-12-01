@@ -213,13 +213,22 @@ my_string = "pumpkins"
 my_array = ["pumpkins"]
 tricky_method(my_string, my_array)
 
-puts "My string looks like this now: #{my_string}"
-puts "My array looks like this now: #{my_array}"
+puts "My string looks like this now: #{my_string}" # "pumpkins"
+puts "My array looks like this now: #{my_array}" # ["pumpkins", "rutabaga"]
+
+# The reasons these are the answers is that while within the method new variables are created , the string operation is 
+# reassigning a value, which creates a new string object. However since an array can have multiple elements added to it
+# we find that this is not a case of reassignment and that my_array and an_array_param are pointing to the same object.
+# Therefore when add "rutabaga" to the array inside the method , we are able to see it outside the method as well
+# because it is the same object within and without. The string reassignment ( which creates a new object ) only lives within
+# the method and is therefore not the same object as my_string, so my_string remains unchanged.
 
 
-Question 4
 
-To drive that last one home...let's turn the tables and have the string show a modified output, while the array thwarts the method's efforts to modify the caller's version of it.
+
+# Question 4
+
+# To drive that last one home...let's turn the tables and have the string show a modified output, while the array thwarts the method's efforts to modify the caller's version of it.
 
 def tricky_method_two(a_string_param, an_array_param)
   a_string_param << 'rutabaga'
@@ -230,12 +239,16 @@ my_string = "pumpkins"
 my_array = ["pumpkins"]
 tricky_method_two(my_string, my_array)
 
-puts "My string looks like this now: #{my_string}"
-puts "My array looks like this now: #{my_array}"
-Solution 4
-Question 5
+puts "My string looks like this now: #{my_string}" # "pumpkinsrutabaga"
+puts "My array looks like this now: #{my_array}" # ["pumpkins"]
 
-How could the unnecessary duplication in this method be removed?
+# The reason the array doesnt change is that once again we are using reassignment within the method ( which creates a new object )
+# and our now reassigned array only lives within the method.
+
+
+# Question 5
+
+# How could the unnecessary duplication in this method be removed?
 
 def color_valid(color)
   if color == "blue" || color == "green"
@@ -244,4 +257,9 @@ def color_valid(color)
     false
   end
 end
-Solution 5
+
+def color_valid?(color)
+  color == "blue" || color == "green"
+end
+
+
